@@ -1,0 +1,8 @@
+Result of data_handling_2d_patch.py
+Used for training and validation
+
+Brain MR image shape(6,50,512,512)
+Crop to small 2d patch:
+train2d_32.npy:(n,32,32,1)
+train2d_32.npy:(n,32,32,4)
+4:num_classes
