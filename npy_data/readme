@@ -1,8 +1,10 @@
-train_x.npy (n,w,h,channel)
-train_y.npy (n,w,h,class_numbers)
+train_x.npy (n,z,w,h)
+train_y.npy (n,z,w,h)
 test_x.npy
 test_y.npy
 
+z:slice
+
 In my project:
-Miccia datasets,(6,512,512,1);(6,512,512,4)
-4 classes:background,gm,wm,csf
+Miccia datasets,(6,50,512,512);(6,50,512,512)
+
