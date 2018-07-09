@@ -1,6 +1,6 @@
 # Brain-Tissue-Segment-Keras
-Network: FCN, U-Net, Unet+Resblock(DeepUNet), Squeeze+UNet, DenseNet+UNet...
-
+Network: FCN, UNet, Unet+Resblock(DeepUNet), Squeeze+UNet, DenseNet+UNet(DenseUNet)...
+-------------------------------------------------------------------------------------------
 ---config.py: Set parameters
 Including:PATCH_SIZE,MODEL_TYPE,BATCH_SIZE...
 
@@ -17,3 +17,15 @@ output: logs/ (you can see loss curve in tensorboard)
 
 ---predict_test_2d.py
 poutput: predict/(you can see the predicted result of Test Set)
+
+-----------------------------------------------------------------------------------------
+Some Reference（just reference!!! not absolutely same!）
+
+UNet+ResBlock(DeepUNet)：
+https://arxiv.org/pdf/1711.10684.pdf
+
+DenseNet+UNet：
+https://arxiv.org/pdf/1611.09326.pdf
+
+Squeeze+UNet
+https://arxiv.org/abs/1602.07360
