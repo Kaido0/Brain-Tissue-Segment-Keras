@@ -1,5 +1,7 @@
 # Brain-Tissue-Segment-Keras
 Network: FCN, UNet, Unet+Resblock(DeepUNet), Squeeze+UNet, DenseNet+UNet(DenseUNet)...
+
+using small patch_size(32,32)
 -------------------------------------------------------------------------------------------
 ---config.py: Set parameters
 Including:PATCH_SIZE,MODEL_TYPE,BATCH_SIZE...
