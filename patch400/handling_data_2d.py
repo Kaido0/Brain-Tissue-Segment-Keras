@@ -10,16 +10,12 @@ import configs
 
 # init configs
 num_classes = configs.NUM_CLASSES
-
-# patch extraction parameters
 patch_size = configs.PATCH_SIZE
 
 # create npy data
-def create_npy_data(is_train):
-    print('loading data '+'.'*20)
-    train_x=np.load('train400.npy')
-    train_y=np.load('label400.npy')
-    print('loding done '+'.'*20)
+def create_npy_data(is_train,trainpath):
+    train_x=np.load(trainpath+'train256.npy')
+    train_y=np.load(trainpath+'label256.npy')
     
     patch_train = np.empty(shape=[0,patch_size,patch_size], dtype='int16')
     patch_train_label = np.empty(shape=[0,patch_size,patch_size,num_classes], dtype='int16')
@@ -32,7 +28,7 @@ def create_npy_data(is_train):
         print('Ready to Val'+'.'*10)
     j=0
     for i in vol:
-        print('Processing: volume {0} / 6 volume images'.format(j+1))
+        print('Processing: volume {0} / 6 volume',(j+1))
         patch_train=np.append(patch_train,train_x[i],axis=0)
         temp=separate_labels(train_y[i])
         patch_train_label=np.append(patch_train_label,temp,axis=0)
@@ -50,12 +46,12 @@ def create_npy_data(is_train):
     # save train or validation
     if is_train:
         print('NOW tarin data'+'.'*20)
-        np.save('2d_patch/train2d_'+str(patch_size)+'.npy', patch_train)
-        np.save('2d_patch/train2d_gt_'+str(patch_size)+'.npy', patch_train_label)
+        np.save('train_256/trainImage'+str(patch_size)+'.npy', patch_train)
+        np.save('train_256/trainLabel'+str(patch_size)+'.npy', patch_train_label)
     else:
         print('NOW:val data'+'.'*20)
-        np.save('2d_patch/val2d_'+str(patch_size)+'.npy', patch_train)
-        np.save('2d_patch/val2d_gt_'+str(patch_size)+'.npy', patch_train_label)        
+        np.save('train_256/valImage'+str(patch_size)+'.npy', patch_train)
+        np.save('train_256/valLabel'+str(patch_size)+'.npy', patch_train_label)        
     print('npy done!!!')
 
 
@@ -82,18 +78,19 @@ def separate_labels(patch_3d_volume):
         result  = np.append(result,result_v, axis=0)
     return result
 
-# load train npy    
-def load_train_data():
-    x_train= np.load('2d_patch/train2d_'+str(patch_size)+'.npy')
-    y_train= np.load('2d_patch/train2d_gt_'+str(patch_size)+'.npy')
-    
-    x_val= np.load('2d_patch/val2d_'+str(patch_size)+'.npy')
-    y_val= np.load('2d_patch/val2d_gt_'+str(patch_size)+'.npy')    
-    
-    return x_train,y_train,x_val,y_val    
 
+def dataloader(trainpath,testpath):
+    TestImage=np.load(testpath+'test_x.npy')
+    TestMask=np.load(testpath+'test_y.npy')
+    TrainImage=np.load(trainpath+'train256.npy')
+    TrainLabel=np.load(trainpath+'label256.npy')
+    return TrainImage,TrainLabel,TestImage,TestMask
 
 if __name__ == '__main__':
+    '''
     if '2d_patch' not in os.listdir(os.curdir):
         os.mkdir('2d_patch')
-    create_npy_data(1)
+    '''
+    create_npy_data(0,'train_256/')
+    exit()
+    trainx,trainy,testx,testy=dataloader('train_256/','npy_data/')  

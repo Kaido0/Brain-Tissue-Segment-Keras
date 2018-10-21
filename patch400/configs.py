@@ -2,7 +2,7 @@
 
 # number of classes
 NUM_CLASSES = 4
-PATCH_SIZE = 400
+PATCH_SIZE = 256
     
 # training configs
 UNET_MODEL = 3
@@ -36,7 +36,7 @@ elif PATCH_SIZE==32:
     PATIENCE = 20  
 elif PATCH_SIZE==16:
     PATIENCE = 10
-elif PATCH_SIZE==400:
+elif PATCH_SIZE==256:
     PATIENCE = 10
 
 # output
